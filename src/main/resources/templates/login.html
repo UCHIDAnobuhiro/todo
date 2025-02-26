@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link>
+<title>ログイン画面</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+	<header>
+		<div>
+			<span>TODO</span>
+			<span>Create</span>
+		</div>
+		<div>
+			User_name
+		</div>
+	</header>
+	<main>
+		<div>
+			Login
+		</div>
+		<div>
+				<form th:action="@{/show}" th:object="${user}" method="post">
+				       <label>Email：</label>
+				       <input type="text" th:field="*{email}" required />
+				       <br>
+					   <label>Password：</label>
+					   <input type="text" th:field="*{password}" required />
+					   <br>
+					   <button type="submit">登録</button>
+				</form>
+		</div>
+	</main>
+	<footer>@Copyright</footer>
+</body>
+
+</html>
