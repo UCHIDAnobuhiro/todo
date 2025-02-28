@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,12 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 
+	@GetMapping("todo/show")
+	public String showPage(Model model) {
+		model.addAttribute("tasks", taskService.getTaskWithValidImages());
+		return "todo/show-todo";
+	}
+
 	@GetMapping("/todo/create")
 	public String createPage(Model model) {
 		model.addAttribute("task", new Task());
@@ -43,27 +47,7 @@ public class TaskController {
 	@PostMapping("/submit")
 	public String submitTask(@ModelAttribute Task task, @RequestParam("imageFile") MultipartFile imageFile,
 			Model model) {
-		if (!imageFile.isEmpty()) {
-			try {
-				File uploadDir = new File(UPLOAD_DIR);
-				if (!uploadDir.exists()) {
-					uploadDir.mkdirs();
-				}
-
-				String fileName = System.currentTimeMillis() + "_" + imageFile.getOriginalFilename();
-				File destinationFile = new File(uploadDir, fileName);
-
-				imageFile.transferTo(destinationFile);
-
-				task.setImageAt("/uploads/" + fileName);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		taskService.saveTask(task);
-		List<Task> tasks = taskRepository.findAll();
-		model.addAttribute("tasks", tasks);
-		return "todo/database";
+		taskService.saveTaskWithImage(task, imageFile);
+		return "redirect:todo/show";
 	}
 }
