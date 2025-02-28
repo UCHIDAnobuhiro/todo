@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,11 +17,16 @@ import lombok.Setter;
 public class Task {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	private Long id;
+
+	@Column(nullable = false)
 	private String title;
+
+	@Column(columnDefinition = "TEXT")
 	private String contents;
-	private String image_at;
-	private Long user_id;
+
+	private String imageAt;
+
+	private Long userId;
 
 }
