@@ -26,6 +26,9 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
+	@Column(nullable = false)
+	private String name;
+
 	//pw検証用データベースに接続されない
 	@Transient
 	private String confirmPassword;

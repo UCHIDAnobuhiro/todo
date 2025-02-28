@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -42,21 +41,33 @@ public class UserController {
 	public String doCreateAccount(User user, Model model) {
 		List<User> users = userRepository.findAll();
 
+		boolean hasError = false;
 		//passwordとconfirmPassword一致するかどうかをチェック
 		if (!user.getPassword().equals(user.getConfirmPassword())) {
 			System.out.println("Password doesnt match");
 			System.out.println(user.getPassword() + user.getConfirmPassword());
-			model.addAttribute("errorMessage_pw", "Password doesn't match asdas");
-			return "login/createAccount";
+			model.addAttribute("errorMessage_pw", "Password doesn't match");
+			hasError = true;
 		}
+
+		if (user.getName() == null || user.getName().length() <= 2) {
+			model.addAttribute("errorMessage_name", "Name must be longer than 2 characters");
+			hasError = true;
+		}
+
 		//既存アカウントであるかをチェック
 		for (User existingUser : users) {
 			if (existingUser.getEmail().equals(user.getEmail())) {
 				System.out.println("Almost exist accout please try another");
 				model.addAttribute("errorMessage_email", "Almost exist email please try another");
-				return "login/createAccount";
+				hasError = true;
+				break;
 			}
 		}
+		if (hasError) {
+			return "login/createAccount";
+		}
+
 		userService.saveUser(user);
 		return "redirect:/login";
 	}
@@ -69,7 +80,7 @@ public class UserController {
 
 	//一覧画面へ移動時の処理
 	@PostMapping("/show")
-	public RedirectView doCheckUserData(@ModelAttribute User user, Model model) {
+	public String doCheckUserData(@ModelAttribute User user, Model model) {
 
 		//データベースでuserをチェックし、あるなら/showを表示する、ないならloginに戻る
 		model.addAttribute(user);
@@ -78,10 +89,10 @@ public class UserController {
 		for (User existingUser : users) {
 			if (existingUser.getEmail().equals(user.getEmail())
 					&& existingUser.getPassword().equals(user.getPassword())) {
-				return new RedirectView("/show");
+				return "login/show";
 			}
 		}
 		model.addAttribute("errorMessage_login", "Email or Password is incorrect");
-		return new RedirectView("/login");
+		return "/login/login";
 	}
 }
