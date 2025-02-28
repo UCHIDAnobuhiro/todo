@@ -21,16 +21,6 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private UserRepository userRepository;
-	//	@RequestMapping("/")
-	//	public ModelAndView redirectToLogin() {
-	//		return new ModelAndView("redirect:/login");
-	//	}
-
-	//最初に表示する画面をログイン画面に設定
-	//	@RequestMapping("/login/login")
-	//	public String showLogin() {
-	//		return "login/login";
-	//	}
 
 	//ログイン画面でユーザーデータの入力を行う
 	@GetMapping("/login")
