@@ -27,6 +27,28 @@ public class TaskController {
 	@Autowired
 	private TaskRepository taskRepository;
 
+	@GetMapping("todo/show")
+	public String showPage(Model model) {
+		List<Task> tasks = taskRepository.findAll();
+
+		for (Task task : tasks) {
+			if (task.getImageAt() != null && !task.getImageAt().isEmpty()) {
+				String fileName = task.getImageAt().replace("/uploads/", "");
+				File file = new File(UPLOAD_DIR, fileName);
+				if (!file.exists()) {
+					System.out.println("File not found! Using default image.");
+					task.setImageAt("https://dummyimage.com/720x400");
+				}
+			} else {
+				System.out.println("No image path found in database. Using default image.");
+				task.setImageAt("https://dummyimage.com/720x400");
+			}
+		}
+
+		model.addAttribute("tasks", tasks);
+		return "todo/show-todo";
+	}
+
 	@GetMapping("/todo/create")
 	public String createPage(Model model) {
 		model.addAttribute("task", new Task());
@@ -62,8 +84,6 @@ public class TaskController {
 		}
 
 		taskService.saveTask(task);
-		List<Task> tasks = taskRepository.findAll();
-		model.addAttribute("tasks", tasks);
-		return "todo/database";
+		return "redirect:todo/show";
 	}
 }
