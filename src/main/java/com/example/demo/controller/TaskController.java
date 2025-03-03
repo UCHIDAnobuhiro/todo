@@ -19,7 +19,6 @@ import com.example.demo.service.TaskService;
 
 @Controller
 public class TaskController {
-	private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
 	@Autowired
 	private TaskService taskService;
