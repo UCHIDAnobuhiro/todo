@@ -30,4 +30,6 @@ public class Task {
 	@Column(name = "user_id")
 	private Long userId;
 
+	@Column(name = "is_deleted", nullable = false)
+	private boolean isDeleted = false;
 }
