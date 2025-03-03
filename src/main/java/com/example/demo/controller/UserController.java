@@ -23,7 +23,7 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
-	//ログイン画面でユーザーデータの入力を行う111
+	//ログイン画面でユーザーデータの入力を行う
 	@GetMapping("/login")
 	public String loginSetUser(Model model) {
 		User user = new User();
@@ -39,6 +39,7 @@ public class UserController {
 		return "login/createAccount";
 	}
 
+	//Sign up ボタンを押下時の動作
 	@PostMapping("/createAccout")
 	public String doCreateAccount(User user, Model model) {
 		List<User> users = userRepository.findAll();
@@ -51,7 +52,7 @@ public class UserController {
 			model.addAttribute("errorMessage_pw", "Password doesn't match");
 			hasError = true;
 		}
-
+		//nameは3文字以上であるかをチェック
 		if (user.getName() == null || user.getName().length() <= 2) {
 			model.addAttribute("errorMessage_name", "Name must be longer than 2 characters");
 			hasError = true;
@@ -70,28 +71,23 @@ public class UserController {
 			return "login/createAccount";
 		}
 
+		//データベースにデータを登録しログイン画面に戻る
 		userService.saveUser(user);
 		return "redirect:/login";
 	}
 
-	//	//一覧画面へ移動
-	//	@GetMapping("todo/show")
-	//	public String showUserPage(Model model) {
-	//		return "todo/show-todo";
-	//	}
-
-	//一覧画面へ移動時の処理
+	//ログイン画面からタスク一覧画面へ移動時の処理
 	@PostMapping("todo/show")
 	public String doCheckUserData(@ModelAttribute User user, Model model, HttpSession session) {
 
-		//データベースでuserをチェックし、あるなら/showを表示する、ないならloginに戻る
+		//データベースでuserをチェックし、あるなら一覧画面へ移動、ないならエラーメッセージの表示
 		model.addAttribute(user);
 		List<User> users = userRepository.findAll();
 
 		for (User existingUser : users) {
 			if (existingUser.getEmail().equals(user.getEmail())
 					&& existingUser.getPassword().equals(user.getPassword())) {
-				//useridをsessionに保存し、次のページはずっとこれでuseridをとる
+				//ユーザーIDとNAMEをsessionに保存し、タスク関連画面に利用される
 				//ログアウトのときは削除する必要がある
 				session.setAttribute("userId", existingUser.getId());
 				session.setAttribute("userName", existingUser.getName());

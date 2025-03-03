@@ -1,3 +1,4 @@
+//ログイン画面と新規登録画面のアニメーションのjs
 function startAnimation() {
 	document.querySelectorAll('.todo-item').forEach((item, index) => {
 		setTimeout(() => {

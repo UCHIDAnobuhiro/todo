@@ -16,13 +16,12 @@
 						Todo List</h1>
 					<h1 class="title-font font-medium text-3xl text-gray-900 text-center font-bold text-4xl">Your simple
 						& smart task manager</h1>
-					<!--					追加デザイン-->
+					<!--タスクチェックの移動のアニメーション-->
 					<div class="background-todo flex-col mt-16">
 						<div class="todo-item text-center">Write a report <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
 						<div class="todo-item text-center">Team meeting <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
 						<div class="todo-item text-center">Code review <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
 					</div>
-					<!--					追加デザイン-->
 				</div>
 				<form th:action="@{createAccout}" th:object="${user}" method="post"
 					class="lg:w-2/6 md:w-full bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 shadow-xl">
@@ -66,7 +65,6 @@
 			</div>
 		</section>
 	</main>
-	<!--	login/layoutファイルで定義されたfotterTemplateをth:insert方法で挿入-->
 	<div th:insert="~{fragments/layout :: footerTemplate}"></div>
 	<script src="/js/loginScript.js"></script>
 </body>
