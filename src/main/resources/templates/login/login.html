@@ -3,11 +3,11 @@
 <link>
 <title>ログイン画面</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-<link rel="stylesheet" href="/login/css/style.css">
+<link rel="stylesheet" th:href="@{/css/loginStyle.css}">
 </head>
 
 <body class="h-full">
-	<div th:insert="~{login/layout :: headerTemplate}"></div>
+	<div th:insert="~{fragments/layout :: headerTemplate}"></div>
 	<main>
 		<section class="text-gray-600 body-fon h-full flex ">
 			<div class="container px-5 pb-24 mx-auto flex flex-wrap items-center">
@@ -17,14 +17,14 @@
 					<h1 class="title-font font-medium text-3xl text-gray-900 text-center font-bold text-4xl">Your simple
 						& smart task manager</h1>
 					<!--					追加デザイン-->
-					<div class="background-todo flex-col mt-10">
-						<div class="todo-item text-center">Write a report <span class="checkmark">√</span></div>
-						<div class="todo-item text-center">Team meeting <span class="checkmark">√</span></div>
-						<div class="todo-item text-center">Code review <span class="checkmark">√</span></div>
+					<div class="background-todo flex-col mt-16">
+						<div class="todo-item text-center">Write a report <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Team meeting <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Code review <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
 					</div>
 					<!--					追加デザイン-->
 				</div>
-				<form th:action="@{/show}" th:object="${user}" method="post"
+				<form th:action="@{/todo/show}" th:object="${user}" method="post"
 					class="lg:w-2/6 md:w-full bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 shadow-xl">
 					<h2 class="text-gray-900 text-lg font-medium title-font mb-5 flex flex-row justify-between">
 						<span>Login</span>
@@ -46,16 +46,16 @@
 							focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out shadow" required />
 					</div>
 					<button type="submit"
-						class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
+						class="text-white bg-indigo-500 border-0 py-2 px-8 my-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
 					<p class="text-xs text-gray-500 mt-3">Let's start today's work by manage your ToDo List.</p>
 				</form>
 			</div>
 		</section>
 	</main>
 	<!--	login/layoutファイルで定義されたfotterTemplateをth:insert方法で挿入-->
-	<div th:insert="~{login/layout :: footerTemplate}"></div>
+	<div th:insert="~{fragments/layout :: footerTemplate}"></div>
 	<!--	追加機能のjs-->
-	<script src="login/js/loginScript.js"></script>
+	<script src="/js/loginScript.js"></script>
 </body>
 
 </html>

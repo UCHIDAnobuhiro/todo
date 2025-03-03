@@ -27,6 +27,7 @@ public class Task {
 
 	private String imageAt;
 
+	@Column(name = "user_id")
 	private Long userId;
 
 }

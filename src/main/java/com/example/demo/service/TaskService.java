@@ -17,9 +17,8 @@ public class TaskService {
 	private TaskRepository taskRepository;
 	private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
 
-	public List<Task> getTaskWithValidImages() {
-		List<Task> tasks = taskRepository.findAll();
-
+	public List<Task> getTaskWithValidImagesByUserid(Long user_id) {
+		List<Task> tasks = taskRepository.findByUserId(user_id);
 		for (Task task : tasks) {
 			if (task.getImageAt() != null && !task.getImageAt().isEmpty()) {
 				String fileName = task.getImageAt().replace("/uploads/", "");

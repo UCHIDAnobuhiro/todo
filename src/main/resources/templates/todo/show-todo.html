@@ -14,7 +14,10 @@
 			<div class="flex flex-wrap w-full mb-20">
 				<div class="lg:w-1/2 w-full mb-6 lg:mb-0">
 					<!-- データベースからnameを取得　-->
-					<h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">〇〇さんのTo Do リスト</h1>
+					<h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+						<span th:text=${userName}></span>
+						<span>さんのTo Do リスト</span>
+					</h1>
 					<div class="h-1 w-20 bg-indigo-500 rounded"></div>
 					<a href="/todo/create"
 						class="mt-4 inline-block text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">

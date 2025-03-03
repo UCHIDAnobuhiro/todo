@@ -3,11 +3,11 @@
 <link>
 <title>ログイン画面</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-<link rel="stylesheet" href="/login/css/style.css">
+<link rel="stylesheet" th:href="@{/css/loginStyle.css}">
 </head>
 
 <body>
-	<div th:insert="~{login/layout :: headerTemplate}"></div>
+	<div th:insert="~{fragments/layout :: headerTemplate}"></div>
 	<main>
 		<section class="text-gray-600 body-fon h-full flex ">
 			<div class="container px-5 pb-24 mx-auto flex flex-wrap items-center">
@@ -17,10 +17,10 @@
 					<h1 class="title-font font-medium text-3xl text-gray-900 text-center font-bold text-4xl">Your simple
 						& smart task manager</h1>
 					<!--					追加デザイン-->
-					<div class="background-todo flex-col mt-10">
-						<div class="todo-item text-center">Write a report <span class="checkmark text-indigo-500 font-bold">√</span></div>
-						<div class="todo-item text-center">Team meeting <span class="checkmark text-indigo-500 font-bold">√</span></div>
-						<div class="todo-item text-center">Code review <span class="checkmark text-indigo-500 font-bold">√</span></div>
+					<div class="background-todo flex-col mt-16">
+						<div class="todo-item text-center">Write a report <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Team meeting <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Code review <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
 					</div>
 					<!--					追加デザイン-->
 				</div>
@@ -60,15 +60,15 @@
 							required />
 					</div>
 					<button type="submit"
-						class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+						class="text-white bg-indigo-500 border-0 py-2 px-8 my-2 focus:outline-none hover:bg-indigo-600 rounded text-lg">
 						Sign up</button>
 				</form>
 			</div>
 		</section>
 	</main>
 	<!--	login/layoutファイルで定義されたfotterTemplateをth:insert方法で挿入-->
-	<div th:insert="~{login/layout :: footerTemplate}"></div>
-	<script src="/login/js/loginScript.js"></script>
+	<div th:insert="~{fragments/layout :: footerTemplate}"></div>
+	<script src="/js/loginScript.js"></script>
 </body>
 
 </html>
