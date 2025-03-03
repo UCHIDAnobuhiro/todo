@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,15 +74,15 @@ public class UserController {
 		return "redirect:/login";
 	}
 
-	//一覧画面へ移動
-	@GetMapping("/show")
-	public String showUserPage(Model model) {
-		return "login/show";
-	}
+	//	//一覧画面へ移動
+	//	@GetMapping("todo/show")
+	//	public String showUserPage(Model model) {
+	//		return "todo/show-todo";
+	//	}
 
 	//一覧画面へ移動時の処理
-	@PostMapping("/show")
-	public String doCheckUserData(@ModelAttribute User user, Model model) {
+	@PostMapping("todo/show")
+	public String doCheckUserData(@ModelAttribute User user, Model model, HttpSession session) {
 
 		//データベースでuserをチェックし、あるなら/showを表示する、ないならloginに戻る
 		model.addAttribute(user);
@@ -89,7 +91,11 @@ public class UserController {
 		for (User existingUser : users) {
 			if (existingUser.getEmail().equals(user.getEmail())
 					&& existingUser.getPassword().equals(user.getPassword())) {
-				return "login/show";
+				//useridをsessionに保存し、次のページはずっとこれでuseridをとる
+				//ログアウトのときは削除する必要がある
+				session.setAttribute("userId", existingUser.getId());
+				session.setAttribute("userName", existingUser.getName());
+				return "redirect:/todo/show";
 			}
 		}
 		model.addAttribute("errorMessage_login", "Email or Password is incorrect");

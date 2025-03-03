@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +28,12 @@ public class TaskController {
 	private TaskRepository taskRepository;
 
 	@GetMapping("todo/show")
-	public String showPage(Model model) {
-		model.addAttribute("tasks", taskService.getTaskWithValidImages());
+	public String showPage(HttpSession session, Model model) {
+		long userId = (long) session.getAttribute("userId");
+		String userName = (String) session.getAttribute("userName");
+		System.out.println(userId);
+		model.addAttribute("userName", userName);
+		model.addAttribute("tasks", taskService.getTaskWithValidImagesByUserid(userId));
 		return "todo/show-todo";
 	}
 
@@ -46,7 +52,9 @@ public class TaskController {
 
 	@PostMapping("/submit")
 	public String submitTask(@ModelAttribute Task task, @RequestParam("imageFile") MultipartFile imageFile,
-			Model model) {
+			Model mode, HttpSession session) {
+		long userId = (long) session.getAttribute("userId");
+		task.setUserId(userId);
 		taskService.saveTaskWithImage(task, imageFile);
 		return "redirect:todo/show";
 	}
