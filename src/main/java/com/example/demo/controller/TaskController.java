@@ -31,7 +31,6 @@ public class TaskController {
 	public String showPage(HttpSession session, Model model) {
 		long userId = (long) session.getAttribute("userId");
 		String userName = (String) session.getAttribute("userName");
-		System.out.println(userId);
 		model.addAttribute("userName", userName);
 		model.addAttribute("tasks", taskService.getTaskWithValidImagesByUserid(userId));
 		return "todo/show-todo";
