@@ -14,7 +14,7 @@ html,
 body {
 	height: auto;
 	min-height: 100vh;
-	background: linear-gradient(to bottom, rgb(239, 239, 239) 0%, rgb(212, 212, 212) 100%);
+	background: linear-gradient(to bottom, rgb(249, 249, 249) 0%, rgb(219, 219, 219) 100%);
 }
 
 main {
@@ -25,7 +25,7 @@ main {
 }
 
 
-/*追加デザイン*/
+/*ログイン画面アニメーションのCSS設定*/
 .background-todo {
 	position: relative;
 	font-size: 20px;
@@ -59,3 +59,4 @@ main {
 		transform: translateY(-50px);
 	}
 }
+/*ログイン画面アニメーションのCSS設定*/
