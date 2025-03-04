@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,4 +58,18 @@ public class TaskService {
 		taskRepository.save(task);
 	}
 
+	public List<Task> getAllTasks() {
+		return taskRepository.findByIsDeletedFalse();
+	}
+
+	public boolean softDeleteTask(Long id) {
+		Optional<Task> taskOptional = taskRepository.findById(id);
+		if (taskOptional.isPresent()) {
+			Task task = taskOptional.get();
+			task.setDeleted(true); // isDeleted を true にする
+			taskRepository.save(task);
+			return true;
+		}
+		return false;
+	}
 }

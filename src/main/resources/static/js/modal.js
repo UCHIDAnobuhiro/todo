@@ -25,8 +25,27 @@ document.addEventListener("DOMContentLoaded", () => {
 		modal.classList.remove("flex");
 	});
 
-	confirmDeleteButton.addEventListener("click", function() {
-		console.log(selectedTaskId);
+	confirmDeleteButton.addEventListener("click", async () => {
+		if (selectedTaskId) {
+			try {
+				const response = await fetch(`/delete/${selectedTaskId}`, {
+					method: "PATCH",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ is_deleted: true })
+				});
+				if (response.ok) {
+					document.querySelector(`[data-task-id='${selectedTaskId}']`).closest(".task-item").remove();
+					modal.classList.add("hidden");
+					modal.classList.remove("flex");
+					console.log("削除成功", selectedTaskId);
+				} else {
+					console.error("削除失敗", response.status);
+				}
+			} catch (error) {
+				console.error("削除エラー:", error);
+			}
+		}
+
 	});
 
 	modal.addEventListener("click", (event) => {
