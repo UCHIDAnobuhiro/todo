@@ -11,15 +11,16 @@
 	<section class="text-gray-600 body-font relative">
 		<div class="container px-5 py-24 mx-auto">
 			<div class="flex flex-col text-center w-full mb-12">
-				<h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">To Do リストの作成</h1>
+				<h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">To Do リストの編集</h1>
 			</div>
-			<form th:action="@{/todo/submit}" th:object="${task}" method="post" enctype="multipart/form-data"
+			<form th:action="@{/todo/update}" th:object="${task}" method="post" enctype="multipart/form-data"
 				class="lg:w-1/2 md:w-2/3 mx-auto">
+				<input type="hidden" th:field="*{id}">
 				<div class="flex flex-wrap -m-2">
 					<div class="p-2 w-full">
 						<label for="avatar" class="leading-7 text-sm text-gray-60">画像のアップロード</label></br>
-						<input type="file" name="imageFile" id="avatar" accept="image/png, image/jpeg"
-							class="w-fulla" />
+						<input type="file" th:field="*{imageFile}" name="imageFile" id="avatar"
+							accept="image/png, image/jpeg" class="w-fulla" />
 					</div>
 					<div class="p-2 w-full">
 						<label for="name" class="leading-7 text-sm text-gray-600">タイトル</label>
@@ -32,10 +33,10 @@
 							class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
 					</div>
 					<div class="p-2 w-full flex">
-						<a th:href ="@{/todo/show}"
+						<a th:href="@{/todo/show}"
 							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る</a>
 						<button type="submit"
-							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">作成</button>
+							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">変更</button>
 					</div>
 				</div>
 			</form>
