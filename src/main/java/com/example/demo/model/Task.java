@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,9 @@ public class Task {
 	private String contents;
 
 	private String imageAt;
+
+	@Column(nullable = false)
+	private LocalDate deadline;
 
 	@Column(name = "user_id")
 	private Long userId;
