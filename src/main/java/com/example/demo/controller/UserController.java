@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.PBKDF2Util;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -71,6 +72,16 @@ public class UserController {
 			return "login/createAccount";
 		}
 
+		//passwordをhash化し保存する
+		String password = user.getPassword();
+		String hashedPassword = null;
+		try {
+			hashedPassword = PBKDF2Util.hashPassword(password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		user.setPassword(hashedPassword);
+
 		//データベースにデータを登録しログイン画面に戻る
 		userService.saveUser(user);
 		return "redirect:/login";
@@ -82,17 +93,12 @@ public class UserController {
 
 		//データベースでuserをチェックし、あるなら一覧画面へ移動、ないならエラーメッセージの表示
 		model.addAttribute(user);
-		List<User> users = userRepository.findAll();
+		User existingUser = userRepository.findByEmail(user.getEmail());
 
-		for (User existingUser : users) {
-			if (existingUser.getEmail().equals(user.getEmail())
-					&& existingUser.getPassword().equals(user.getPassword())) {
-				//ユーザーIDとNAMEをsessionに保存し、タスク関連画面に利用される
-				//ログアウトのときは削除する必要がある
-				session.setAttribute("userId", existingUser.getId());
-				session.setAttribute("userName", existingUser.getName());
-				return "redirect:/todo/show";
-			}
+		if (existingUser != null && PBKDF2Util.verifyPassword(user.getPassword(), existingUser.getPassword())) {
+			session.setAttribute("userId", existingUser.getId());
+			session.setAttribute("userName", existingUser.getName());
+			return "redirect:/todo/show";
 		}
 		model.addAttribute("errorMessage_login", "Email or Password is incorrect");
 		return "/login/login";
