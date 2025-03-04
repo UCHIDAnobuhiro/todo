@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class Task {
 
 	private String imageAt;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(nullable = false)
 	private LocalDate deadline;
 

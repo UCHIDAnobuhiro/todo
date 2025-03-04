@@ -83,6 +83,7 @@ public class TaskService {
 		if (existingTask != null) {
 			existingTask.setTitle(task.getTitle());
 			existingTask.setContents(task.getContents());
+			existingTask.setDeadline(task.getDeadline());
 			if (task.getImageFile() != null && !task.getImageFile().isEmpty()) {
 				saveTaskWithImage(existingTask, task.getImageFile());
 			}
