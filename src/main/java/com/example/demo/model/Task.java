@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,4 +35,7 @@ public class Task {
 
 	@Column(name = "is_deleted", nullable = false)
 	private boolean isDeleted = false;
+
+	@Transient
+	private MultipartFile imageFile;
 }

@@ -50,7 +50,7 @@
 
 						<!-- 編集・削除ボタン（下に固定） -->
 						<div class="flex justify-between mt-auto pt-4">
-							<a href="/todo/edit"
+							<a th:href="@{/todo/edit/{id}(id=${task.id})}"
 								class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">
 								編集
 							</a>
