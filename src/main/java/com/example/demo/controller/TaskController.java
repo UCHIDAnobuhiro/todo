@@ -34,7 +34,11 @@ public class TaskController {
 
 	@GetMapping("todo/show")
 	public String showPage(HttpSession session, Model model) {
-		long userId = (long) session.getAttribute("userId");
+		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			//Sessionにuseridがない場合はlogin画面を表示
+			return "redirect:/login";
+		}
 		String userName = (String) session.getAttribute("userName");
 		model.addAttribute("userName", userName);
 		model.addAttribute("tasks", taskService.getTaskWithValidImagesByUserid(userId));
@@ -42,7 +46,12 @@ public class TaskController {
 	}
 
 	@GetMapping("/todo/create")
-	public String createPage(Model model) {
+	public String createPage(HttpSession session, Model model) {
+		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			//Sessionにuseridがない場合はlogin画面を表示
+			return "redirect:/login";
+		}
 		model.addAttribute("task", new Task());
 		return "todo/create-todo";
 	}

@@ -10,8 +10,9 @@
 </head>
 
 <body>
-	<header class="text-gray-600 body-font" th:fragment="headerTemplate">
-		<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+	<!--	default header-->
+	<header class="text-gray-600 body-font flex-col justify-between" th:fragment="headerTemplate">
+		<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
 			<a href="/login" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
 					stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
@@ -22,6 +23,9 @@
 			</a>
 		</div>
 	</header>
+	<!--	default header-->
+
+	<!--	default footer-->
 	<footer th:fragment="footerTemplate"
 		class="text-gray-200 body-font fixed bottom-0 w-full opacity-50 hover:opacity-100 transition-opacity duration-300">
 		<div class="bg-gray-100">
@@ -67,5 +71,21 @@
 			</div>
 		</div>
 	</footer>
+	<!--	default footter-->
+
+	<!--	default logout-->
+	    <form th:fragment="logoutTemplate" th:action="@{/logout}" method="post" class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+	        <button type="submit" class="flex items-center title-font font-medium text-gray-900 mb-4 md:mb-0">
+	            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+	                stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+	                viewBox="0 0 24 24">
+	                <path
+	                    d="M16 17l5-5-5-5M21 12H9M13 5V3a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2" />
+	            </svg>
+	            <span class="ml-2">Logout</span>
+	        </button>
+	    </form>
+	<!--	default logout-->
 </body>
+
 </html>
