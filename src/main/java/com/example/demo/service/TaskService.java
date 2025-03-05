@@ -72,4 +72,22 @@ public class TaskService {
 		}
 		return false;
 	}
+
+	public Task findById(Long id) {
+		Optional<Task> task = taskRepository.findById(id);
+		return task.orElse(null); // タスクが存在しない場合は null を返す
+	}
+
+	public void updateTask(Task task) {
+		Task existingTask = taskRepository.findById(task.getId()).orElse(null);
+		if (existingTask != null) {
+			existingTask.setTitle(task.getTitle());
+			existingTask.setContents(task.getContents());
+			existingTask.setDeadline(task.getDeadline());
+			if (task.getImageFile() != null && !task.getImageFile().isEmpty()) {
+				saveTaskWithImage(existingTask, task.getImageFile());
+			}
+			taskRepository.save(existingTask);
+		}
+	}
 }

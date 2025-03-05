@@ -56,6 +56,16 @@ public class TaskController {
 		return "todo/create-todo";
 	}
 
+	@GetMapping("/todo/edit/{id}")
+	public String editPage(@PathVariable Long id, Model model) {
+		Task task = taskService.findById(id);
+		if (task == null) {
+			return "redirect:/todo/show";
+		}
+		model.addAttribute("task", task);
+		return "todo/edit-todo";
+	}
+
 	@GetMapping("/todo/database")
 	public String databasePage(Model model) {
 		List<Task> tasks = taskRepository.findAll();
@@ -63,13 +73,19 @@ public class TaskController {
 		return "todo/database";
 	}
 
-	@PostMapping("/submit")
+	@PostMapping("/todo/submit")
 	public String submitTask(@ModelAttribute Task task, @RequestParam("imageFile") MultipartFile imageFile,
 			Model mode, HttpSession session) {
 		long userId = (long) session.getAttribute("userId");
 		task.setUserId(userId);
 		taskService.saveTaskWithImage(task, imageFile);
-		return "redirect:todo/show";
+		return "redirect:/todo/show";
+	}
+
+	@PostMapping("/todo/update")
+	public String updateTask(@ModelAttribute Task task) {
+		taskService.updateTask(task);
+		return "redirect:/todo/show";
 	}
 
 	@GetMapping
