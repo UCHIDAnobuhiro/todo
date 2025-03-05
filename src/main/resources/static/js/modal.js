@@ -11,9 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
 			selectedTaskId = event.target.getAttribute("data-task-id");
 			modal.classList.remove("hidden");
 			modal.classList.add("flex");
+			console.log(selectedTaskId);
+		
 		})
 	})
-
 
 	closeButton.addEventListener("click", () => {
 		modal.classList.remove("flex");
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	})
 
 	cancelButton.addEventListener("click", () => {
+		console.log("cancel");
 		modal.classList.add("hidden");
 		modal.classList.remove("flex");
 	});
@@ -34,9 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
 					body: JSON.stringify({ is_deleted: true })
 				});
 				if (response.ok) {
-					document.querySelector(`[data-task-id='${selectedTaskId}']`).closest(".task-item").remove();
 					modal.classList.add("hidden");
 					modal.classList.remove("flex");
+					window.location.href = "/todo/show";
 					console.log("削除成功", selectedTaskId);
 				} else {
 					console.error("削除失敗", response.status);
