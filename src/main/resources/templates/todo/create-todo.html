@@ -28,6 +28,31 @@
 							class="w-fulla" />
 					</div>
 					<div class="p-2 w-full">
+						<label for="name" class="leading-7 text-sm text-gray-600">カテゴリー</label>
+						<ul class="mt-2 flex items-center gap-4">
+							<li class="flex items-center">
+								<input type="radio" th:field="*{category}" value="work" id="category1"
+									class="form-radio text-indigo-600">
+								<label for="category1" class="ml-2 text-gray-700 cursor-pointer">work</label>
+							</li>
+							<li class="flex items-center">
+								<input type="radio" th:field="*{category}" value="hobby" id="category2"
+									class="form-radio text-indigo-600">
+								<label for="category2" class="ml-2 text-gray-700 cursor-pointer">hobby</label>
+							</li>
+							<li class="flex items-center">
+								<input type="radio" th:field="*{category}" value="shopping" id="category3"
+									class="form-radio text-indigo-600">
+								<label for="category3" class="ml-2 text-gray-700 cursor-pointer">shopping</label>
+							</li>
+							<li class="flex items-center">
+								<input type="radio" th:field="*{category}" value="study" id="category4"
+									class="form-radio text-indigo-600">
+								<label for="category4" class="ml-2 text-gray-700 cursor-pointer">study</label>
+							</li>
+						</ul>
+					</div>
+					<div class="p-2 w-full">
 						<label for="name" class="leading-7 text-sm text-gray-600">タイトル</label>
 						<input type="text" th:field="*{title}" id="name" required maxlength="30"
 							class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
@@ -38,7 +63,7 @@
 							class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
 					</div>
 					<div class="p-2 w-full flex">
-						<a th:href ="@{/todo/show}"
+						<a th:href="@{/todo/show}"
 							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る</a>
 						<button type="submit"
 							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">作成</button>

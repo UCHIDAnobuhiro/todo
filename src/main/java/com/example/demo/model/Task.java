@@ -45,4 +45,6 @@ public class Task {
 
 	@Transient
 	private MultipartFile imageFile;
+
+	private String category;
 }
