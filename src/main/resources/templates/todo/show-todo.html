@@ -11,10 +11,7 @@
 
 <body>
 	<div>
-		<div class="flex items-center justify-between mx-auto">
-			<div th:insert="~{fragments/layout :: headerTemplate}"></div>
-			<div th:insert="~{fragments/layout :: logoutTemplate}"></div>
-		</div>
+		<div th:insert="~{fragments/header :: headerLoginTemplate}"></div>
 		<section class="text-gray-600 body-font">
 			<div class="container px-5 py-24 mx-auto">
 				<div class="flex flex-wrap w-full mb-20">
@@ -112,7 +109,7 @@
 			</div>
 		</section>
 		<script th:src="@{/js/modal.js}"></script>
-		<div th:insert="~{fragments/layout :: footerTemplate}"></div>
+		<div th:insert="~{fragments/footer :: footerTemplate}"></div>
 </body>
 
 </html>

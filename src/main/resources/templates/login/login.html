@@ -18,9 +18,12 @@
 						& smart task manager</h1>
 					<!--タスクチェックの移動のアニメーション-->
 					<div class="background-todo flex-col mt-16">
-						<div class="todo-item text-center">Write a report <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
-						<div class="todo-item text-center">Team meeting <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
-						<div class="todo-item text-center">Code review <span class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Write a report <span
+								class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Team meeting <span
+								class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
+						<div class="todo-item text-center">Code review <span
+								class="checkmark text-indigo-500 font-bold text-2xl">√</span></div>
 					</div>
 				</div>
 				<form th:action="@{/todo/show}" th:object="${user}" method="post"
@@ -49,6 +52,7 @@
 					<p class="text-xs text-gray-500 mt-3">Let's start today's work by manage your ToDo List.</p>
 				</form>
 			</div>
+			
 		</section>
 	</main>
 	<!--	templates/fragments/layoutファイルで定義されたfotterTemplateをth:insert方法で挿入-->
