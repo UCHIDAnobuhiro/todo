@@ -48,7 +48,7 @@
 						<p th:text="'締切日: ' + ${#temporals.format(task.deadline, 'yyyy/MM/dd')}" class="text-sm text-gray-500 mb-4"></p>
 						
 						<!-- カテゴリー -->
-						<h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">CATEGORY</h3>
+						<h3 th:text="${task.category}" class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
 
 						<!-- タイトル -->
 						<h2 th:text=" ${task.title}"
