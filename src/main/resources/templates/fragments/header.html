@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Layout template</title>
+
+</head>
+
+<body>
+	
+
+	<!--    default header-->
+	<header class="text-gray-600 body-font flex-col justify-between w-full" th:fragment="headerTemplate">
+	    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+	        <a href="/login" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+	            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+	                stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+	                viewBox="0 0 24 24">
+	                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+	            </svg>
+	            <span class="ml-3 text-2xl">Todo List</span>
+	        </a>
+	    </div>
+	</header>
+	<!--    default header-->
+
+	<!--    default logout-->
+	<header class="text-gray-600 body-font w-full" th:fragment="headerLoginTemplate">
+	    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+	        <a href="/login" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+	            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+	                stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+	                viewBox="0 0 24 24">
+	                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+	            </svg>
+	            <span class="ml-3 text-2xl">Todo List</span>
+	        </a>
+	        <form th:action="@{/logout}" method="post">
+	            <button type="submit" class="flex items-center title-font font-medium text-gray-900 mb-4 md:mb-0">
+	                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+	                    stroke-linejoin="round" stroke-width="2"
+	                    class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+	                    <path d="M16 17l5-5-5-5M21 12H9M13 5V3a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2" />
+	                </svg>
+	                <span class="ml-2">Logout</span>
+	            </button>
+	        </form>
+	    </div>
+	</header>
+	
+	
+<!--		default header-->
+<!--	<header class="text-gray-600 body-font flex-col justify-between w-full" th:fragment="headerTemplate">-->
+<!--		<div class="container flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">-->
+<!--			<a href="/login" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">-->
+<!--				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"-->
+<!--					stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"-->
+<!--					viewBox="0 0 24 24">-->
+<!--					<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>-->
+<!--				</svg>-->
+<!--				<span class="ml-3 text-2xl">Todo List</span>-->
+<!--			</a>-->
+<!--		</div>-->
+<!--	</header>-->
+<!--		default header-->
+
+<!--		default logout-->
+<!--	<header class="text-gray-600 body-font w-full" th:fragment="headerLoginTemplate">-->
+<!--		<div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center justify-between" >-->
+<!--			<a href="/login" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">-->
+<!--				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"-->
+<!--					stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"-->
+<!--					viewBox="0 0 24 24">-->
+<!--					<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>-->
+<!--				</svg>-->
+<!--				<span class="ml-3 text-2xl">Todo List</span>-->
+<!--			</a>-->
+<!--			<form th:action="@{/logout}" method="post">-->
+<!--				<button type="submit" class="flex items-center title-font font-medium text-gray-900 mb-4 md:mb-0">-->
+<!--					<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"-->
+<!--						stroke-linejoin="round" stroke-width="2"-->
+<!--						class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">-->
+<!--						<path-->
+<!--							d="M16 17l5-5-5-5M21 12H9M13 5V3a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2" />-->
+<!--					</svg>-->
+<!--					<span class="ml-2">Logout</span>-->
+<!--				</button>-->
+<!--			</form>-->
+<!--		</div>-->
+<!--	</header>-->
+<!--		default logout-->
+</body>
+
+</html>

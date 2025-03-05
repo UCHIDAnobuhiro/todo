@@ -76,6 +76,12 @@ public class UserController {
 		return "redirect:/login";
 	}
 
+	//	@PostMapping("/login")
+	//	public String login(HttpSession session, @RequestParam String userId) {
+	//		session.setAttribute("userId", userId);
+	//		return "redirect:/todo/show";
+	//	}
+
 	//ログイン画面からタスク一覧画面へ移動時の処理
 	@PostMapping("todo/show")
 	public String doCheckUserData(@ModelAttribute User user, Model model, HttpSession session) {
