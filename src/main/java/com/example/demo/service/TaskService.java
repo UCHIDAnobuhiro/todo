@@ -73,6 +73,28 @@ public class TaskService {
 		return false;
 	}
 
+	public boolean deletedTaskRestore(Long id) {
+		Optional<Task> taskOptional = taskRepository.findById(id);
+		if (taskOptional.isPresent()) {
+			Task task = taskOptional.get();
+			task.setDeleted(false); // isDeleted を false にする
+			taskRepository.save(task);
+			return true;
+		}
+		return false;
+	}
+
+	public boolean updateTaskStatus(Long id, String newStatus) {
+		Optional<Task> taskOptional = taskRepository.findById(id);
+		if (taskOptional.isPresent()) {
+			Task task = taskOptional.get();
+			task.setStatus(newStatus);
+			taskRepository.save(task);
+			return true;
+		}
+		return false;
+	}
+
 	public Task findById(Long id) {
 		Optional<Task> task = taskRepository.findById(id);
 		return task.orElse(null); // タスクが存在しない場合は null を返す
