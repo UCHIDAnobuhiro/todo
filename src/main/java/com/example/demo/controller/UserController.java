@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.service.PBKDF2Util;
+import com.example.demo.service.HashPassword;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -76,7 +76,7 @@ public class UserController {
 		String password = user.getPassword();
 		String hashedPassword = null;
 		try {
-			hashedPassword = PBKDF2Util.hashPassword(password);
+			hashedPassword = HashPassword.hashPassword(password);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,7 +101,7 @@ public class UserController {
 		model.addAttribute(user);
 		User existingUser = userRepository.findByEmail(user.getEmail());
 
-		if (existingUser != null && PBKDF2Util.verifyPassword(user.getPassword(), existingUser.getPassword())) {
+		if (existingUser != null && HashPassword.verifyPassword(user.getPassword(), existingUser.getPassword())) {
 			session.setAttribute("userId", existingUser.getId());
 			session.setAttribute("userName", existingUser.getName());
 			return "redirect:/todo/show";

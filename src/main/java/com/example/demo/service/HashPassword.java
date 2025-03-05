@@ -7,7 +7,7 @@ import java.util.Base64;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public class PBKDF2Util {
+public class HashPassword {
 
 	// PBKDF2のパラメータを設定
 	private static final int SALT_LENGTH = 16; // ソルトの長さ
