@@ -33,6 +33,8 @@ public class Task {
 
 	private String imageAt;
 
+	private String status;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(nullable = false)
 	private LocalDate deadline;
