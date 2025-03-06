@@ -12,11 +12,11 @@ async function updateTaskStatus(selectedElement) {
 		});
 
 		if (response.ok) {
-			console.log("状态更新成功", taskId, newStatus);
+			console.log("ステータス更新成功", taskId, newStatus);
 		} else {
-			console.error("状态更新失败", response.status);
+			console.error("ステータス更新失敗", response.status);
 		}
 	} catch (error) {
-		console.error("状态更新错误:", error);
+		console.error("ステータス更新エラー:", error);
 	}
 }
