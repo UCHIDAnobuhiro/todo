@@ -82,6 +82,27 @@
 								class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm ">
 								編集
 							</a>
+							<!--ステータスのドロップリスト-->
+							<div class="flex ml-4  items-center">
+								<div class="relative">
+									<select
+										class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10"
+										th:attr="data-task-id=${task.id}" onchange="updateTaskStatus(this)">
+										<option value="未対応" th:selected="${task.status == '未対応'}">未対応</option>
+										<option value="処理中" th:selected="${task.status == '処理中'}">処理中</option>
+										<option value="処理済み" th:selected="${task.status == '処理済み'}">処理済み</option>
+										<option value="完了" th:selected="${task.status == '完了'}">完了</option>
+									</select>
+									<span
+										class="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+										<svg fill="none" stroke="currentColor" stroke-linecap="round"
+											stroke-linejoin="round" stroke-width="2" class="w-4 h-4"
+											viewBox="0 0 24 24">
+											<path d="M6 9l6 6 6-6"></path>
+										</svg>
+									</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -92,6 +113,7 @@
 	<script th:src="@{/js/modal.js}"></script>
 	<script th:src="@{/js/btn_sort_deadline.js}"></script>
 	<script th:src="@{/js/btn_filter_category.js}"></script>
+	<script th:src="@{/js/task-status-update.js}"></script>
 </body>
 
 </html>

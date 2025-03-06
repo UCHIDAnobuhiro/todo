@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -125,6 +126,18 @@ public class TaskController {
 		} else {
 			response.put("error", "タスクが見つかりません");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+		}
+	}
+
+	@PatchMapping("/updateTaskStatus/{id}")
+	public ResponseEntity<String> updateTaskStatus(@PathVariable("id") Long id,
+			@RequestBody Map<String, String> request) {
+		String newStatus = request.get("status");
+		boolean result = taskService.updateTaskStatus(id, newStatus);
+		if (result) {
+			return ResponseEntity.ok("Task state updated successfully");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
 		}
 	}
 
