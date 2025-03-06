@@ -1,3 +1,9 @@
+document.getElementById("sort-order").addEventListener("change", function() {
+	const order = this.value;
+	sortDeadline(order);
+});
+
+
 const sortDeadline = (order) => {
 	let taskList = document.getElementById("task-list");
 	let tasks = Array.from(taskList.getElementsByClassName("task"));
@@ -17,5 +23,3 @@ const sortDeadline = (order) => {
 	taskList.innerHTML = "";
 	tasks.forEach(task => taskList.appendChild(task));
 }
-document.getElementById("sort-asc").addEventListener("click", () => sortDeadline("asc"));
-document.getElementById("sort-desc").addEventListener("click", () => sortDeadline("desc"));
