@@ -106,41 +106,4 @@ public class TaskController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
 		}
 	}
-
-	@PatchMapping("/restore/{id}")
-	//請求からのidを取得し、 ResponseEntity（請求に対するレスポンス）を求める方法を作成
-	public ResponseEntity<Map<String, Object>> deletedTaskResotre(@PathVariable("id") Long id) {
-
-		//レスポンスを作成
-		Map<String, Object> response = new HashMap<>();
-
-		//idに対する削除動作を行い、削除成功したかどうかを取得
-		boolean result = taskService.deletedTaskRestore(id);
-		if (result) {
-			response.put("message", "タスク" + id + "論理削除をしました");
-			response.put("id", id);
-
-			//成功したら200 OKのレスポンスをRETURNする
-			return ResponseEntity.ok(response);
-		} else {
-			response.put("error", "タスクが見つかりません");
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
-		}
-	}
-
-	//削除履歴ボタン押下時の画面遷移とタスクの表示
-	@GetMapping("todo/show/deleted")
-	public String showDeletedTaskPage(HttpSession session, Model model) {
-		Long userId = (Long) session.getAttribute("userId");
-		if (userId == null) {
-			//Sessionにuseridがない場合はlogin画面を表示
-			return "redirect:/login";
-		}
-		String userName = (String) session.getAttribute("userName");
-		model.addAttribute("userName", userName);
-
-		//ユーザーごとのタスクを取得
-		model.addAttribute("tasks", taskService.getTaskWithValidImagesByUserid(userId));
-		return "todo/show-deleted-todo";
-	}
 }
