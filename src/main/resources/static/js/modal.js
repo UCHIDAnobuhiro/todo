@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				console.error("削除エラー:", error);
 			}
 		}
+
 	});
 
 	modal.addEventListener("click", (event) => {
