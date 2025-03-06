@@ -24,13 +24,27 @@
 						class="mt-4 inline-block text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
 						作成
 					</a>
-					<div class="flex items-center gap-4 mt-4">
-					    <label for="sort-order" class="text-lg text-gray-700">期限日:</label>
-					    <select id="sort-order" class="py-2 px-4 rounded text-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
-					        <option value="asc">早い</option>
-					        <option value="desc">遅い</option>
-					    </select>
-					</div>
+					<ul class="flex gap-6">
+						<li class="flex items-center gap-4 mt-4">
+							<label for="sort-order" class="text-lg text-gray-700">期限日:</label>
+							<select id="sort-order"
+								class="py-2 px-4 rounded text-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+								<option value="asc">早い</option>
+								<option value="desc">遅い</option>
+							</select>
+						</li>
+						<li class="flex items-center gap-4 mt-4">
+							<label for="category-filter" class="text-lg text-gray-700">カテゴリー:</label>
+							<select id="category-filter"
+								class="py-2 px-4 rounded text-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
+								<option value="all">all</option>
+								<option value="work">work</option>
+								<option value="hobby">hobby</option>
+								<option value="shopping">shopping</option>
+								<option value="study">study</option>
+							</select>
+						</li>
+					</ul>
 				</div>
 				<p class="lg:w-1/2 w-full leading-relaxed text-gray-500">
 					Blueprints of tomorrow are built on today’s efforts—one step, one spark, one idea at a time. Keep
@@ -39,7 +53,7 @@
 				</p>
 			</div>
 			<div id="task-list" class="flex flex-wrap -m-4">
-				<div th:each="task: ${tasks}" th:if="${!task.isDeleted}" class="task xl:w-1/4 md:w-1/2 p-4" th:attr="data-deadline=${task.deadline}">
+				<div th:each="task: ${tasks}" th:if="${!task.isDeleted}" class="task xl:w-1/4 md:w-1/2 p-4" th:attr="data-deadline=${task.deadline}, data-category=${task.category}">
 					<div class="task-item bg-gray-100 p-6 rounded-lg flex flex-col h-full">
 						<!-- 画像 -->
 						<img class="h-40 rounded w-full object-cover object-center mb-6" th:src="${task.imageAt}"
@@ -51,10 +65,9 @@
 						<!-- カテゴリー -->
 						<h3 th:text="${task.category}" class="tracking-widest text-indigo-500 text-xs font-medium title-font"></h3>
 
-							<!-- タイトル -->
-							<h2 th:text=" ${task.title}"
-								class="text-lg text-gray-900 font-medium title-font mb-4 min-h-[40px] break-all"></h2>
-
+                        <!-- タイトル -->
+                        <h2 th:text=" ${task.title}"
+                            class="text-lg text-gray-900 font-medium title-font mb-4 min-h-[40px] break-all"></h2>
 
 						<!-- コンテンツ -->
 						<p th:text="${task.contents}" class="leading-relaxed text-sm whitespace-pre-wrap break-words">
@@ -115,6 +128,7 @@
   <div th:insert="~{fragments/footer :: footerTemplate}"></div>
 	<script th:src="@{/js/modal.js}"></script>
 	<script th:src="@{/js/btn_sort_deadline.js}"></script>
+	<script th:src="@{/js/btn_filter_category.js}"></script>
 </body>
 
 </html>
