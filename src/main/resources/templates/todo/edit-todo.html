@@ -8,6 +8,7 @@
 </head>
 
 <body>
+	<div th:insert="~{fragments/header :: headerLoginTemplate}"></div>				
 	<section class="text-gray-600 body-font relative">
 		<div class="container px-5 py-10 mx-auto">
 			<div class="flex flex-col text-center w-full mb-12">
@@ -111,6 +112,7 @@
 			</div>
 		</div>
 	</div>
+    <div th:insert="~{fragments/footer :: footerTemplate}"></div>
 	<script th:src="@{/js/modal.js}"></script>
 </body>
 
