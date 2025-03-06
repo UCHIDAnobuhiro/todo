@@ -31,7 +31,7 @@
 					</a>
 					<ul class="flex flex-wrap gap-6">
 						<li class="flex items-center gap-4 mt-4 sm:w-auto">
-							<label for="sort-order" class="text-lg text-gray-700 whitespace-nowrap">期限日:</label>
+							<label for="sort-order" class="text-lg text-gray-700 whitespace-nowrap">締切日:</label>
 							<select id="sort-order"
 								class="py-2 px-4 rounded text-lg border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-400">
 								<option value="asc">早い</option>
@@ -78,9 +78,9 @@
 						</p>
 						
 						<!-- 編集・削除ボタン（下に固定） -->
-						<div class="flex justify-between mt-auto pt-4">
+						<div class="flex justify-between mt-auto pt-4 items-center">
 							<a th:href="@{/todo/edit/{id}(id=${task.id})}"
-								class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm ">
+								class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">
 								編集
 							</a>
 							<!--ステータスのドロップリスト-->
@@ -111,7 +111,6 @@
 		</div>
 	</section>
     <div th:insert="~{fragments/footer :: footerTemplate}"></div>
-	<script th:src="@{/js/modal.js}"></script>
 	<script th:src="@{/js/btn_sort_deadline.js}"></script>
 	<script th:src="@{/js/btn_filter_category.js}"></script>
 	<script th:src="@{/js/task-status-update.js}"></script>

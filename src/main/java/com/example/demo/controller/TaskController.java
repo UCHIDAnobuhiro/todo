@@ -67,13 +67,6 @@ public class TaskController {
 		return "todo/edit-todo";
 	}
 
-	@GetMapping("/todo/database")
-	public String databasePage(Model model) {
-		List<Task> tasks = taskRepository.findAll();
-		model.addAttribute("tasks", tasks);
-		return "todo/database";
-	}
-
 	@PostMapping("/todo/submit")
 	public String submitTask(@ModelAttribute Task task, @RequestParam("imageFile") MultipartFile imageFile,
 			Model mode, HttpSession session) {

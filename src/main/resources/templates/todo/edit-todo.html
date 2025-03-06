@@ -66,13 +66,15 @@
 					</div>
 					<div class="p-2 w-full flex">
 						<a th:href="@{/todo/show}"
-							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る</a>
-						<button type="submit"
-							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">変更</button>
+							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">戻る
+						</a>
 						<button
-							class="modal-open text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded text-sm"
+							class="modal-open flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
 							type="button" th:attr="data-task-id=${task.id}">
 							削除
+						</button>
+						<button type="submit"
+							class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">変更
 						</button>
 					</div>
 				</div>
